@@ -80,7 +80,8 @@ class FrameBuffer:
             return self._buffer
 
     def set_pixel(self, x, y, r, g, b):
-        self._buffer[x][y] = [r, g, b]
+        with self._bufferLock:
+            self._buffer[x][y] = [r, g, b]
 
     def get_size(self):
         with self._bufferLock:

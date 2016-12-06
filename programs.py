@@ -37,7 +37,7 @@ class LightPoint:
 
         self.colour = []
         for i in range(0, 3):
-            self.colour.append(randint(100, 255))
+            self.colour.append(randint(50, 255))
 
 
 class Cross(LightProgram):
