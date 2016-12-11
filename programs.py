@@ -2,23 +2,11 @@
 
 from random import randint
 
-from lights import make_color_grid
+from .lightprogram import LightProgram
+from .util import make_color_grid
 
 
-class LightProgram:
-    def __init__(self, w, h):
-        self.current_frame = []
-        self.last_w = w
-        self.last_h = h
-
-    def get_next_frame(self, w, h):
-        next_frame = make_color_grid(w, h)
-
-        self.current_frame = next_frame
-        return self.current_frame
-
-
-class LightPoint:
+class _LightPoint:
     def __init__(self, w, h):
 
         self.direction = randint(1, 4)
@@ -47,7 +35,6 @@ class Cross(LightProgram):
         self.max_points = 10
 
     def get_next_frame(self, w, h):
-
         next_frame = make_color_grid(w, h)
 
         for point in self.points:
@@ -70,7 +57,7 @@ class Cross(LightProgram):
 
         # Create New Points of Light
         if len(self.points) < self.max_points and randint(0, 5) > 1:
-            self.points.append(LightPoint(w, h))
+            self.points.append(_LightPoint(w, h))
 
         for point in self.points:
             next_frame[point.x][point.y] = [point.colour[0], point.colour[1], point.colour[2]]

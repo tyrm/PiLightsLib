@@ -4,8 +4,7 @@ from pythonosc import osc_bundle_builder
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
 
-from lights import DeviceObj, rgba32
-
+from .device import DeviceObj
 
 # OSC Grid Object
 class OSCGrid(DeviceObj):
@@ -23,11 +22,9 @@ class OSCGrid(DeviceObj):
         # Set Pixel
         builder = osc_message_builder.OscMessageBuilder(address="/light/{0}/{1}/color".format(x, y))
 
-        scaled_r = int(r*self.brightness)
-        scaled_g = int(g*self.brightness)
-        scaled_b = int(b*self.brightness)
-
-        builder.add_arg(rgba32(scaled_r, scaled_g, scaled_b))
+        builder.add_arg(r)
+        builder.add_arg(g)
+        builder.add_arg(b)
 
         self.buffer.append(builder.build())
 

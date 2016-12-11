@@ -2,7 +2,7 @@
 
 from neopixel import *
 
-from lights import DeviceObj
+from .device import DeviceObj
 
 
 # UnicornHat Object

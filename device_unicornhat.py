@@ -2,7 +2,7 @@
 
 import unicornhat as unicorn
 
-from lights import DeviceObj
+from .device import DeviceObj
 
 
 # UnicornHat Object
